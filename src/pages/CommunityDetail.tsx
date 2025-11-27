@@ -25,27 +25,29 @@ interface Post {
 const CommunityDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  // 1. FIX: Grab 'loading' state to prevent premature redirect
+  const { user, loading } = useAuth(); 
   const [community, setCommunity] = useState<any>(null);
   const [posts, setPosts] = useState<Post[]>([]);
   const [newMessage, setNewMessage] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!id) return;
-    
-    // Protect the route
+    // 2. FIX: Don't redirect if we are still loading the session
+    if (loading) return; 
+
     if (!user) {
         toast({ title: "Access Denied", description: "Please login to view this community.", variant: "destructive" });
         navigate("/auth");
         return;
     }
 
+    if (!id) return;
+
     // Fetch Community Info
     supabase.from('communities').select('*').eq('id', id).single()
       .then(({ data, error }) => {
         if (error) {
-          toast({ title: "Error", description: "Community not found", variant: "destructive" });
           navigate("/community");
         } else {
           setCommunity(data);
@@ -69,7 +71,7 @@ const CommunityDetail = () => {
       .subscribe();
 
     return () => { supabase.removeChannel(channel); };
-  }, [id, user, navigate]);
+  }, [id, user, loading, navigate]);
 
   const fetchPosts = async () => {
     const { data } = await supabase
@@ -80,7 +82,6 @@ const CommunityDetail = () => {
     
     if (data) {
       setPosts(data);
-      // Scroll to bottom
       setTimeout(() => scrollRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
     }
   };
@@ -99,38 +100,45 @@ const CommunityDetail = () => {
       toast({ title: "Error", description: "Failed to send message", variant: "destructive" });
     } else {
       setNewMessage("");
+      // No need to manually fetchPosts() here if Realtime is working, 
+      // but keeping it doesn't hurt.
+      fetchPosts(); 
     }
   };
 
-  if (!community) return <div className="min-h-screen bg-background flex items-center justify-center">Loading...</div>;
+  // 3. FIX: Show a loading screen instead of redirecting
+  if (loading) return <div className="h-screen w-full flex items-center justify-center">Loading...</div>;
+  if (!community) return <div className="h-screen w-full flex items-center justify-center">Loading Community...</div>;
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="h-screen flex flex-col bg-background overflow-hidden">
       <Navbar />
-      <div className="container mx-auto px-4 py-6 flex-1 flex flex-col max-w-4xl h-[calc(100vh-80px)]">
+      
+      {/* 4. FIX: Use flex-1 to fill EXACTLY the remaining space */}
+      <div className="flex-1 container mx-auto px-4 py-4 flex flex-col max-w-4xl min-h-0">
         
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex-none flex items-center justify-between mb-4">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={() => navigate("/community")}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-primary">{community.name}</h1>
-              <p className="text-xs text-muted-foreground">{community.description}</p>
+              <h1 className="text-xl font-bold text-primary truncate max-w-[200px] sm:max-w-md">{community.name}</h1>
+              <p className="text-xs text-muted-foreground truncate max-w-[200px] sm:max-w-md">{community.description}</p>
             </div>
           </div>
           {community.invite_code && (
             <div className="hidden sm:block bg-muted px-3 py-1 rounded text-xs font-mono text-muted-foreground">
-              Invite Code: {community.invite_code}
+              Code: {community.invite_code}
             </div>
           )}
         </div>
 
-        {/* Chat Interface */}
-        <Card className="flex-1 flex flex-col overflow-hidden border-2 shadow-sm">
-          <div className="p-3 border-b bg-muted/30 flex items-center gap-2 text-sm font-medium text-primary">
-            <MessageSquare className="h-4 w-4" /> Community Forum
+        {/* Chat Interface - Fills remaining height */}
+        <Card className="flex-1 flex flex-col overflow-hidden border-2 shadow-sm min-h-0">
+          <div className="flex-none p-3 border-b bg-muted/30 flex items-center gap-2 text-sm font-medium text-primary">
+            <MessageSquare className="h-4 w-4" /> Chat Room
           </div>
 
           <ScrollArea className="flex-1 p-4">
@@ -151,7 +159,7 @@ const CommunityDetail = () => {
                       <span className="text-[10px] text-muted-foreground mb-1 px-1">
                         {post.profiles?.full_name}
                       </span>
-                      <div className={`p-3 rounded-lg text-sm shadow-sm ${
+                      <div className={`p-3 rounded-lg text-sm shadow-sm break-words ${
                         post.user_id === user?.id 
                           ? "bg-primary text-primary-foreground rounded-tr-none" 
                           : "bg-muted text-foreground rounded-tl-none"
@@ -166,7 +174,8 @@ const CommunityDetail = () => {
             </div>
           </ScrollArea>
 
-          <div className="p-4 border-t bg-background">
+          {/* Input Area - Pinned to bottom by flex layout */}
+          <div className="flex-none p-4 border-t bg-background">
             <form onSubmit={sendMessage} className="flex gap-2">
               <Input 
                 value={newMessage} 
