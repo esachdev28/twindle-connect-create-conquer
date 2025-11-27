@@ -4,20 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
-
-// Pages
 import Home from "./pages/Home";
+import Connect from "./pages/Connect";
+import Community from "./pages/Community";
+import CommunityDetail from "./pages/CommunityDetail"; // Import the new page
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
-
-// Community Pages
-import Community from "./pages/Community";
-import CommunityDetail from "./pages/CommunityDetail";
-
-// Connect Pages
-import Connect from "./pages/Connect";
 import CreateProject from "./pages/connect/CreateProject";
 import ProjectDetails from "./pages/connect/ProjectDetails";
 
@@ -31,24 +25,22 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <Routes>
-            {/* Main Navigation */}
             <Route path="/" element={<Home />} />
-            <Route path="/feed" element={<Feed />} />
-            <Route path="/profile" element={<Profile />} />
             
-            {/* Auth */}
-            <Route path="/auth/*" element={<Auth />} />
-
-            {/* Community Section */}
-            <Route path="/community" element={<Community />} />
-            <Route path="/community/:id" element={<CommunityDetail />} />
-
-            {/* Connect Section */}
+            {/* Connect Section Routes */}
             <Route path="/connect" element={<Connect />} />
             <Route path="/connect/create-project" element={<CreateProject />} />
             <Route path="/connect/projects/:projectId" element={<ProjectDetails />} />
-
-            {/* 404 Route */}
+            
+            {/* Community Section Routes */}
+            <Route path="/community" element={<Community />} />
+            <Route path="/community/:id" element={<CommunityDetail />} /> {/* Chat Page */}
+            
+            <Route path="/feed" element={<Feed />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/auth/*" element={<Auth />} />
+            
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
