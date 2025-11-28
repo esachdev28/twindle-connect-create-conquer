@@ -124,7 +124,7 @@ export const Step1AccountDetails = ({ data, updateData, onNext }: Step1Props) =>
     data.password.length >= 8;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-slate-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 shadow-2xl rounded-3xl bg-white">
         <Link to="/" className="text-4xl font-bold text-primary text-center block mb-2">
           Twindle
@@ -232,7 +232,7 @@ export const Step1AccountDetails = ({ data, updateData, onNext }: Step1Props) =>
           <Button
             onClick={handleNext}
             disabled={!isValid}
-            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#10B981] to-[#14B8A6] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
+            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#DC2626] to-[#991B1B] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
           >
             Next
           </Button>
