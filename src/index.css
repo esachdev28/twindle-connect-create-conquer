@@ -10,27 +10,27 @@ All colors MUST be HSL.
   :root {
     /* Backgrounds - Clean white */
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 215 19% 35%;
 
     /* Cards */
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 215 19% 35%;
 
-    /* Primary - Vibrant Emerald */
-    --primary: 160 84% 39%;
+    /* Primary - Bold Crimson */
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 160 84% 35%;
+    --primary-hover: 0 72% 45%;
 
-    /* Secondary - Light Emerald */
-    --secondary: 160 60% 95%;
-    --secondary-foreground: 160 84% 39%;
+    /* Secondary - Light Crimson */
+    --secondary: 0 65% 96%;
+    --secondary-foreground: 0 72% 51%;
 
-    /* Muted - Soft gray-green */
-    --muted: 150 20% 96%;
-    --muted-foreground: 155 16% 47%;
+    /* Muted - Soft slate-gray */
+    --muted: 215 15% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    /* Accent - Deep Teal */
-    --accent: 173 80% 40%;
+    /* Accent - Deep Slate */
+    --accent: 215 25% 27%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -38,21 +38,21 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
 
     /* Borders & Inputs */
-    --border: 150 32% 91%;
-    --input: 150 32% 91%;
-    --ring: 160 84% 39%;
+    --border: 215 20% 91%;
+    --input: 215 20% 91%;
+    --ring: 0 72% 51%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 215 19% 35%;
 
     --radius: 1.5rem;
 
     /* Custom tokens */
     --nav-bg: 0 0% 100%;
-    --footer-bg: 222 47% 11%;
-    --hero-gradient-start: 160 80% 95%;
-    --hero-gradient-end: 173 70% 95%;
-    --card-hover-shadow: 0 10px 40px -10px hsl(160 84% 39% / 0.3);
+    --footer-bg: 215 19% 35%;
+    --hero-gradient-start: 0 65% 95%;
+    --hero-gradient-end: 215 25% 95%;
+    --card-hover-shadow: 0 10px 40px -10px hsl(0 72% 51% / 0.3);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -65,25 +65,25 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 215 19% 35%;
     --foreground: 0 0% 100%;
-    --card: 160 19% 15%;
+    --card: 215 25% 20%;
     --card-foreground: 0 0% 100%;
-    --primary: 160 84% 39%;
+    --primary: 0 72% 51%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 160 84% 35%;
-    --secondary: 160 30% 20%;
+    --primary-hover: 0 72% 45%;
+    --secondary: 0 40% 25%;
     --secondary-foreground: 0 0% 100%;
-    --muted: 160 19% 20%;
-    --muted-foreground: 155 20% 65%;
-    --accent: 173 80% 40%;
+    --muted: 215 19% 25%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 215 25% 27%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 160 19% 20%;
-    --input: 160 19% 20%;
-    --ring: 160 84% 39%;
-    --popover: 160 19% 15%;
+    --border: 215 19% 25%;
+    --input: 215 19% 25%;
+    --ring: 0 72% 51%;
+    --popover: 215 25% 20%;
     --popover-foreground: 0 0% 100%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;

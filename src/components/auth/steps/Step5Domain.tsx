@@ -117,7 +117,7 @@ export const Step5Domain = ({ data, updateData, onBack, onComplete, loading }: S
     : [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-slate-100 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 shadow-2xl rounded-3xl bg-white">
         <button
           onClick={onBack}
@@ -219,14 +219,14 @@ export const Step5Domain = ({ data, updateData, onBack, onComplete, loading }: S
           <Button
             onClick={handleComplete}
             disabled={!isValid || loading}
-            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#10B981] to-[#14B8A6] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
+            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#DC2626] to-[#991B1B] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
           >
             {loading ? "Creating Account..." : "Complete Signup"}
           </Button>
         </div>
 
         {data.domain && data.specialization && (
-          <div className="mt-6 p-4 bg-blue-50 rounded-xl">
+          <div className="mt-6 p-4 bg-red-50 rounded-xl">
             <p className="text-sm text-center text-muted-foreground">
               You'll be automatically joined to the <span className="font-semibold text-primary">{data.specialization}</span> community
             </p>
