@@ -20,7 +20,7 @@ export const Step4Organization = ({ data, updateData, onNext, onBack }: Step4Pro
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 shadow-2xl rounded-3xl bg-white">
         <button
           onClick={onBack}
@@ -58,7 +58,7 @@ export const Step4Organization = ({ data, updateData, onNext, onBack }: Step4Pro
           <Button
             onClick={handleNext}
             disabled={!data.organization}
-            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#4A77FF] to-[#5DA8FF] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
+            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#10B981] to-[#14B8A6] hover:opacity-90 transition-opacity text-white font-medium disabled:opacity-50"
           >
             Next
           </Button>
