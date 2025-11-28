@@ -81,7 +81,7 @@ export const LoginForm = ({ onForgotPassword }: LoginFormProps) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-teal-50 flex items-center justify-center p-4">
       <Card className="w-full max-w-md p-8 shadow-2xl rounded-3xl bg-white">
         <Link to="/" className="text-4xl font-bold text-primary text-center block mb-2">
           Twindle
@@ -129,7 +129,7 @@ export const LoginForm = ({ onForgotPassword }: LoginFormProps) => {
 
           <Button
             type="submit"
-            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#4A77FF] to-[#5DA8FF] hover:opacity-90 transition-opacity text-white font-medium"
+            className="w-full rounded-xl h-12 bg-gradient-to-r from-[#10B981] to-[#14B8A6] hover:opacity-90 transition-opacity text-white font-medium"
             disabled={loading}
           >
             {loading ? "Logging in..." : "Login"}
